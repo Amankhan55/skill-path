@@ -11,7 +11,7 @@ import { ApiService } from '../../core/services/api.service';
   template: `
     <div class="space-y-6">
       <!-- Welcome Section -->
-      <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-8 text-white">
+      <div class="glass-card dark:glass-card-dark rounded-xl p-8 text-white backdrop-blur-xl border-white/30">
         <h1 class="text-3xl font-bold mb-2">
           Welcome back, {{ getUserFirstName() }}! 👋
         </h1>
@@ -24,7 +24,7 @@ import { ApiService } from '../../core/services/api.service';
       @if (readinessScore()) {
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <!-- Readiness Score -->
-          <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md">
+          <div class="glass-card dark:glass-card-dark rounded-xl p-6 backdrop-blur-xl">
             <div class="flex items-center justify-between mb-4">
               <h3 class="text-sm font-medium text-gray-600 dark:text-gray-400">Readiness Score</h3>
               <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -40,7 +40,7 @@ import { ApiService } from '../../core/services/api.service';
           </div>
 
           <!-- Skills Assessed -->
-          <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md">
+          <div class="glass-card dark:glass-card-dark rounded-xl p-6 backdrop-blur-xl">
             <div class="flex items-center justify-between mb-4">
               <h3 class="text-sm font-medium text-gray-600 dark:text-gray-400">Skills Assessed</h3>
               <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -56,7 +56,7 @@ import { ApiService } from '../../core/services/api.service';
           </div>
 
           <!-- Learning Items -->
-          <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md">
+          <div class="glass-card dark:glass-card-dark rounded-xl p-6 backdrop-blur-xl">
             <div class="flex items-center justify-between mb-4">
               <h3 class="text-sm font-medium text-gray-600 dark:text-gray-400">Roadmap Items</h3>
               <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -76,7 +76,7 @@ import { ApiService } from '../../core/services/api.service';
       <!-- Action Cards -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- Select Target Role -->
-        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+        <div class="glass-card dark:glass-card-dark rounded-xl p-6 backdrop-blur-xl hover:scale-105 transition-all">
           <div class="flex items-start space-x-4">
             <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center flex-shrink-0">
               <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -104,7 +104,7 @@ import { ApiService } from '../../core/services/api.service';
         </div>
 
         <!-- Assess Skills -->
-        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+        <div class="glass-card dark:glass-card-dark rounded-xl p-6 backdrop-blur-xl hover:scale-105 transition-all">
           <div class="flex items-start space-x-4">
             <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center flex-shrink-0">
               <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -132,7 +132,7 @@ import { ApiService } from '../../core/services/api.service';
         </div>
 
         <!-- View Roadmap -->
-        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+        <div class="glass-card dark:glass-card-dark rounded-xl p-6 backdrop-blur-xl hover:scale-105 transition-all">
           <div class="flex items-start space-x-4">
             <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center flex-shrink-0">
               <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -160,7 +160,7 @@ import { ApiService } from '../../core/services/api.service';
         </div>
 
         <!-- Gap Analysis -->
-        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+        <div class="glass-card dark:glass-card-dark rounded-xl p-6 backdrop-blur-xl hover:scale-105 transition-all">
           <div class="flex items-start space-x-4">
             <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900 rounded-lg flex items-center justify-center flex-shrink-0">
               <svg class="w-6 h-6 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -188,7 +188,7 @@ import { ApiService } from '../../core/services/api.service';
         </div>
 
         <!-- Role Comparison -->
-        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+        <div class="glass-card dark:glass-card-dark rounded-xl p-6 backdrop-blur-xl hover:scale-105 transition-all">
           <div class="flex items-start space-x-4">
             <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center flex-shrink-0">
               <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -218,7 +218,7 @@ import { ApiService } from '../../core/services/api.service';
 
       <!-- Getting Started Guide (if new user) -->
       @if (!authService.currentUser()?.targetRole || userSkillsCount() === 0) {
-        <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-6">
+        <div class="glass-card dark:glass-card-dark border-white/30 rounded-xl p-6 backdrop-blur-xl">
           <h3 class="text-lg font-bold text-blue-900 dark:text-blue-100 mb-4">
             🚀 Getting Started with SkillPath
           </h3>

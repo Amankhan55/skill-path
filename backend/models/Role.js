@@ -60,6 +60,11 @@ const roleSchema = new mongoose.Schema({
 
 // Validation: min experience < max experience
 roleSchema.pre('validate', function(next) {
+  // Guard against undefined experienceYears object
+  if (!this.experienceYears || typeof this.experienceYears !== 'object') {
+    return next(); // Let schema validation handle missing required field
+  }
+  
   if (this.experienceYears.min >= this.experienceYears.max) {
     next(new Error('Minimum experience must be less than maximum experience'));
   } else {

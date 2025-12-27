@@ -97,12 +97,14 @@ const generateRoadmap = async (userId, targetRoleId) => {
             minimumLevel: p.minimumLevel,
             reason: p.reason
           })),
-        prerequisites: prerequisites.map(p => ({
-          skill: p.skill,
-          type: p.type,
-          minimumLevel: p.minimumLevel,
-          reason: p.reason
-        })),
+        prerequisites: prerequisites
+          .filter(p => p.skill && p.skill._id) // Apply same filter for consistency
+          .map(p => ({
+            skill: p.skill,
+            type: p.type,
+            minimumLevel: p.minimumLevel,
+            reason: p.reason
+          })),
         estimatedHours,
         topicCount: topics.length,
         order: roadmap.length + 1

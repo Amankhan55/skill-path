@@ -30,7 +30,7 @@ interface SkillAssessment {
 
       <!-- Skill Levels Reference -->
       @if (skillLevels().length > 0) {
-        <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-6 mb-8">
+        <div class="glass-card dark:glass-card-dark border-white/30 rounded-xl p-6 mb-8 backdrop-blur-xl">
           <h3 class="font-bold text-blue-900 dark:text-blue-100 mb-4">📊 Skill Level Reference</h3>
           <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
             @for (level of skillLevels(); track level.level) {
@@ -55,14 +55,14 @@ interface SkillAssessment {
 
       <!-- Error State -->
       @if (errorMessage()) {
-        <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 mb-6">
+        <div class="glass-card dark:glass-card-dark border-red-300/50 dark:border-red-700/50 rounded-xl p-4 mb-6 backdrop-blur-xl">
           <p class="text-sm text-red-600 dark:text-red-400">{{ errorMessage() }}</p>
         </div>
       }
 
       <!-- Success Message -->
       @if (successMessage()) {
-        <div class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4 mb-6">
+        <div class="glass-card dark:glass-card-dark border-green-300/50 dark:border-green-700/50 rounded-xl p-4 mb-6 backdrop-blur-xl">
           <p class="text-sm text-green-600 dark:text-green-400">{{ successMessage() }}</p>
         </div>
       }
@@ -71,7 +71,7 @@ interface SkillAssessment {
       @if (!loading() && assessments().length > 0) {
         <div class="space-y-4">
           @for (assessment of assessments(); track assessment.skillId) {
-            <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md">
+            <div class="glass-card dark:glass-card-dark rounded-xl p-6 backdrop-blur-xl">
               <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                 <!-- Skill Info -->
                 <div class="flex-1">
@@ -95,12 +95,19 @@ interface SkillAssessment {
                       <button
                         (click)="setSkillLevel(assessment, level)"
                         [class.bg-blue-600]="assessment.currentLevel === level"
+                        [class.dark:bg-blue-500]="assessment.currentLevel === level"
                         [class.text-white]="assessment.currentLevel === level"
+                        [class.ring-2]="assessment.currentLevel === level"
+                        [class.ring-blue-400]="assessment.currentLevel === level"
+                        [class.dark:ring-blue-300]="assessment.currentLevel === level"
+                        [class.shadow-lg]="assessment.currentLevel === level"
                         [class.bg-gray-200]="assessment.currentLevel !== level"
                         [class.dark:bg-gray-700]="assessment.currentLevel !== level"
                         [class.text-gray-700]="assessment.currentLevel !== level"
                         [class.dark:text-gray-300]="assessment.currentLevel !== level"
-                        class="w-10 h-10 rounded-lg font-bold hover:bg-blue-500 hover:text-white transition-colors"
+                        [class.glass]="assessment.currentLevel !== level"
+                        [class.dark:glass-dark]="assessment.currentLevel !== level"
+                        class="w-10 h-10 rounded-xl font-bold hover:scale-110 transition-all backdrop-blur-xl"
                       >
                         {{ level }}
                       </button>
@@ -116,7 +123,7 @@ interface SkillAssessment {
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
                       Confidence Level
                     </label>
-                    <span class="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 px-3 py-1 rounded-full">
+                    <span class="text-sm font-bold text-blue-600 dark:text-blue-400 glass dark:glass-dark px-3 py-1 rounded-full backdrop-blur-xl">
                       {{ assessment.confidenceScore }}%
                     </span>
                   </div>
@@ -147,14 +154,14 @@ interface SkillAssessment {
         <div class="mt-8 flex justify-end space-x-4">
           <button
             (click)="cancel()"
-            class="px-6 py-3 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 font-medium rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            class="px-6 py-3 glass dark:glass-dark text-gray-900 dark:text-gray-100 font-medium rounded-xl hover:scale-105 transition-all backdrop-blur-xl"
           >
             Cancel
           </button>
           <button
             (click)="saveAssessments()"
             [disabled]="saving() || !hasChanges()"
-            class="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
+            class="px-6 py-3 glass-card dark:glass-card-dark text-white font-medium rounded-xl hover:scale-105 transition-all backdrop-blur-xl border-white/30 disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
           >
             @if (saving()) {
               <svg class="animate-spin h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24">
@@ -169,7 +176,7 @@ interface SkillAssessment {
 
       <!-- No Target Role Message -->
       @if (!loading() && !authService.currentUser()?.targetRole) {
-        <div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-xl p-6 text-center">
+        <div class="glass-card dark:glass-card-dark border-white/30 rounded-xl p-6 text-center backdrop-blur-xl">
           <svg class="w-12 h-12 mx-auto text-yellow-600 dark:text-yellow-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
           </svg>
@@ -181,7 +188,7 @@ interface SkillAssessment {
           </p>
           <button
             (click)="goToRoleSelection()"
-            class="px-6 py-3 bg-yellow-600 text-white font-medium rounded-lg hover:bg-yellow-700 transition-colors"
+            class="px-6 py-3 glass-card dark:glass-card-dark text-white font-medium rounded-xl hover:scale-105 transition-all backdrop-blur-xl border-white/30"
           >
             Select Target Role
           </button>

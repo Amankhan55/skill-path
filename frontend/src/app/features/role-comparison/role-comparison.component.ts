@@ -52,7 +52,7 @@ interface RoleReadiness {
             <div
               [class.ring-2]="comparison.roleId === authService.currentUser()?.targetRole"
               [class.ring-blue-500]="comparison.roleId === authService.currentUser()?.targetRole"
-              class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition-all cursor-pointer"
+              class="glass-card dark:glass-card-dark rounded-xl p-6 backdrop-blur-xl hover:scale-105 transition-all cursor-pointer"
               (click)="selectRole(comparison.roleId)"
             >
               <!-- Role Header -->
@@ -128,14 +128,14 @@ interface RoleReadiness {
 
         <!-- Detailed Comparison -->
         @if (selectedRoleId()) {
-          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8">
+          <div class="glass-card dark:glass-card-dark rounded-xl backdrop-blur-xl p-8">
             <div class="flex items-center justify-between mb-6">
               <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
                 {{ getSelectedRoleName() }} - Detailed Breakdown
               </h2>
               <button
                 (click)="setAsTargetRole()"
-                class="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+                class="px-6 py-3 glass-card dark:glass-card-dark text-white font-medium rounded-xl hover:scale-105 transition-all backdrop-blur-xl border-white/30"
               >
                 Set as Target Role
               </button>
@@ -147,7 +147,7 @@ interface RoleReadiness {
                   Skills to Improve ({{ getSelectedComparison()!.missingSkills.length }})
                 </h3>
                 @for (skill of getSelectedComparison()?.missingSkills; track skill.skillId) {
-                  <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+                  <div class="flex items-center justify-between p-4 glass dark:glass-dark rounded-xl backdrop-blur-xl">
                     <div class="flex-1">
                       <h4 class="font-semibold text-gray-900 dark:text-white mb-2">
                         {{ skill.skillName }}
@@ -201,7 +201,7 @@ interface RoleReadiness {
 
         <!-- Recommendation -->
         @if (bestFitRole()) {
-          <div class="mt-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-8 text-white">
+          <div class="mt-8 glass-card dark:glass-card-dark rounded-xl p-8 text-white backdrop-blur-xl border-white/30">
             <h3 class="text-2xl font-bold mb-2">💡 Recommendation</h3>
             <p class="text-blue-100 mb-4">
               Based on your current skills, you're most ready for:
@@ -211,7 +211,7 @@ interface RoleReadiness {
             @if (bestFitRole()?.roleId !== authService.currentUser()?.targetRole) {
               <a
                 routerLink="/dashboard/role-selection"
-                class="inline-block px-6 py-3 bg-white text-blue-600 font-medium rounded-lg hover:bg-blue-50 transition-colors"
+                class="inline-block px-6 py-3 glass dark:glass-dark text-blue-600 dark:text-blue-400 font-medium rounded-xl hover:scale-105 transition-all backdrop-blur-xl"
               >
                 Consider Switching to This Role
               </a>

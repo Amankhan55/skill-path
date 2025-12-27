@@ -32,7 +32,7 @@ import { AuthService } from '../../core/services/auth.service';
 
       <!-- No Target Role -->
       @if (!loading() && !authService.currentUser()?.targetRole) {
-        <div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-xl p-6 text-center">
+        <div class="glass-card dark:glass-card-dark border-white/30 rounded-xl p-6 text-center backdrop-blur-xl">
           <h3 class="text-lg font-bold text-yellow-900 dark:text-yellow-100 mb-2">
             No Target Role Selected
           </h3>
@@ -41,7 +41,7 @@ import { AuthService } from '../../core/services/auth.service';
           </p>
           <a
             routerLink="/dashboard/role-selection"
-            class="inline-block px-6 py-3 bg-yellow-600 text-white font-medium rounded-lg hover:bg-yellow-700 transition-colors"
+            class="inline-block px-6 py-3 glass-card dark:glass-card-dark text-white font-medium rounded-xl hover:scale-105 transition-all backdrop-blur-xl border-white/30"
           >
             Get Started
           </a>
@@ -51,7 +51,7 @@ import { AuthService } from '../../core/services/auth.service';
       @if (!loading() && authService.currentUser()?.targetRole) {
         <!-- Summary Card -->
         @if (roadmap() && roadmap().length > 0) {
-          <div class="bg-gradient-to-r from-green-600 to-blue-600 rounded-xl p-8 text-white mb-8">
+          <div class="glass-card dark:glass-card-dark rounded-xl p-8 text-white mb-8 backdrop-blur-xl border-white/30">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between">
               <div>
                 <h2 class="text-2xl font-bold mb-2">
@@ -73,9 +73,9 @@ import { AuthService } from '../../core/services/auth.service';
         @if (roadmap().length > 0) {
           <div class="space-y-6">
             @for (item of roadmap(); track item.skillId; let index = $index) {
-              <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+              <div class="glass-card dark:glass-card-dark rounded-xl backdrop-blur-xl overflow-hidden">
                 <!-- Item Header -->
-                <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                <div class="p-6 border-b border-white/20 dark:border-white/10">
                   <div class="flex items-start justify-between">
                     <div class="flex items-start space-x-4 flex-1">
                       <!-- Order Badge -->
@@ -129,7 +129,7 @@ import { AuthService } from '../../core/services/auth.service';
                               <span>Progress</span>
                               <span>{{ getSkillCompletion(item) }}%</span>
                             </div>
-                            <div class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                            <div class="w-full h-2 glass dark:glass-dark rounded-full overflow-hidden backdrop-blur-xl">
                               <div
                                 [style.width.%]="getSkillCompletion(item)"
                                 class="h-full bg-gradient-to-r from-green-500 to-blue-500 transition-all duration-500"
@@ -140,7 +140,7 @@ import { AuthService } from '../../core/services/auth.service';
 
                         <!-- Dependencies -->
                         @if (item.dependencies && item.dependencies.length > 0 && showDependencies().has(item.skillId)) {
-                          <div class="mt-3 p-3 bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-lg">
+                          <div class="mt-3 p-3 glass dark:glass-dark border-white/20 dark:border-white/10 rounded-xl backdrop-blur-xl">
                             <p class="text-sm font-medium text-orange-800 dark:text-orange-200 mb-2">
                               Prerequisites (learn these first):
                             </p>
@@ -159,7 +159,7 @@ import { AuthService } from '../../core/services/auth.service';
                     <!-- Expand/Collapse Button -->
                     <button
                       (click)="toggleExpand(item.skillId)"
-                      class="ml-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                      class="ml-4 p-2 rounded-xl glass dark:glass-dark hover:scale-110 transition-all backdrop-blur-xl"
                     >
                       <svg
                         [class.rotate-180]="expandedItems().has(item.skillId)"
@@ -176,14 +176,14 @@ import { AuthService } from '../../core/services/auth.service';
 
                 <!-- Expanded Content: Topics & Resources -->
                 @if (expandedItems().has(item.skillId) && item.topics.length > 0) {
-                  <div class="p-6 bg-gray-50 dark:bg-gray-900">
+                  <div class="p-6 glass dark:glass-dark backdrop-blur-xl">
                     <h4 class="font-bold text-gray-900 dark:text-white mb-4">
                       📚 Learning Topics ({{ item.topics.length }})
                     </h4>
                     
                     <div class="space-y-4">
                       @for (topic of item.topics; track topic.topicId) {
-                        <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+                        <div class="glass-card dark:glass-card-dark rounded-xl p-4 backdrop-blur-xl border-white/20 dark:border-white/10">
                           <div class="flex items-start space-x-3 mb-2">
                             <!-- Checkbox -->
                             <button
@@ -261,7 +261,7 @@ import { AuthService } from '../../core/services/auth.service';
             }
           </div>
         } @else {
-          <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-12 text-center">
+          <div class="glass-card dark:glass-card-dark rounded-xl p-12 text-center backdrop-blur-xl">
             <svg class="w-16 h-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
@@ -273,7 +273,7 @@ import { AuthService } from '../../core/services/auth.service';
             </p>
             <a
               routerLink="/dashboard/skills"
-              class="inline-block px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+              class="inline-block px-6 py-3 glass-card dark:glass-card-dark text-white font-medium rounded-xl hover:scale-105 transition-all backdrop-blur-xl border-white/30"
             >
               Assess Your Skills
             </a>
@@ -285,13 +285,13 @@ import { AuthService } from '../../core/services/auth.service';
           <div class="mt-8 flex justify-between">
             <a
               routerLink="/dashboard/gap-analysis"
-              class="px-6 py-3 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 font-medium rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              class="px-6 py-3 glass dark:glass-dark text-gray-900 dark:text-gray-100 font-medium rounded-xl hover:scale-105 transition-all backdrop-blur-xl"
             >
               ← View Gap Analysis
             </a>
             <a
               routerLink="/dashboard"
-              class="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all shadow-md hover:shadow-lg"
+              class="px-6 py-3 glass-card dark:glass-card-dark text-white font-medium rounded-xl hover:scale-105 transition-all backdrop-blur-xl border-white/30"
             >
               Back to Dashboard
             </a>

@@ -9,9 +9,9 @@ import { AuthService } from '../../core/services/auth.service';
   standalone: true,
   imports: [CommonModule, RouterLink, RouterLinkActive, RouterOutlet, ThemeToggleComponent],
   template: `
-    <div class="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
+    <div class="min-h-screen gradient-bg transition-colors">
       <!-- Header -->
-      <header class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50">
+      <header class="glass-nav dark:glass-nav-dark sticky top-0 z-50 transition-all">
         <nav class="container mx-auto px-4 py-4">
           <div class="flex items-center justify-between">
             <!-- Logo -->
@@ -44,7 +44,7 @@ import { AuthService } from '../../core/services/auth.service';
               <div class="relative">
                 <button
                   (click)="userMenuOpen = !userMenuOpen"
-                  class="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  class="flex items-center space-x-2 px-3 py-2 rounded-xl glass dark:glass-dark hover:scale-105 transition-all"
                 >
                   <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
                     <span class="text-white text-sm font-medium">{{ getUserInitials() }}</span>
@@ -55,21 +55,21 @@ import { AuthService } from '../../core/services/auth.service';
                 </button>
 
                 @if (userMenuOpen) {
-                  <div class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-2">
-                    <div class="px-4 py-2 border-b border-gray-200 dark:border-gray-700">
+                  <div class="absolute right-0 mt-2 w-48 glass-card dark:glass-card-dark rounded-xl py-2 backdrop-blur-xl">
+                    <div class="px-4 py-2 border-b border-white/20 dark:border-white/10">
                       <p class="text-sm font-medium text-gray-900 dark:text-white">{{ authService.currentUser()?.name }}</p>
                       <p class="text-xs text-gray-500 dark:text-gray-400">{{ authService.currentUser()?.email }}</p>
                     </div>
                     <a
                       routerLink="/dashboard/profile"
                       (click)="userMenuOpen = false"
-                      class="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                      class="block w-full text-left px-4 py-2 text-sm text-gray-900 dark:text-gray-100 hover:glass dark:hover:glass-dark rounded-lg mx-2 transition-all"
                     >
                       Profile Settings
                     </a>
                     <button
                       (click)="logout()"
-                      class="w-full text-left px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                      class="w-full text-left px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:glass dark:hover:glass-dark rounded-lg mx-2 transition-all"
                     >
                       Sign Out
                     </button>
@@ -101,30 +101,27 @@ import { AuthService } from '../../core/services/auth.service';
                   <span class="text-sm font-medium text-gray-900 dark:text-white">{{ authService.currentUser()?.name }}</span>
                   <app-theme-toggle></app-theme-toggle>
                 </div>
-                <a routerLink="/dashboard" (click)="mobileMenuOpen = false" class="px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+                <a routerLink="/dashboard" (click)="mobileMenuOpen = false" class="px-4 py-2 text-gray-900 dark:text-gray-100 glass dark:glass-dark hover:scale-105 rounded-xl transition-all">
                   Dashboard
                 </a>
-                <a routerLink="/dashboard/role-selection" (click)="mobileMenuOpen = false" class="px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+                <a routerLink="/dashboard/role-selection" (click)="mobileMenuOpen = false" class="px-4 py-2 text-gray-900 dark:text-gray-100 glass dark:glass-dark hover:scale-105 rounded-xl transition-all">
                   Roles
                 </a>
-                <a routerLink="/dashboard/role-selection" (click)="mobileMenuOpen = false" class="px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
-                  Roles
-                </a>
-                <a routerLink="/dashboard/skills" (click)="mobileMenuOpen = false" class="px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+                <a routerLink="/dashboard/skills" (click)="mobileMenuOpen = false" class="px-4 py-2 text-gray-900 dark:text-gray-100 glass dark:glass-dark hover:scale-105 rounded-xl transition-all">
                   Skills
                 </a>
-                <a routerLink="/dashboard/roadmap" (click)="mobileMenuOpen = false" class="px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+                <a routerLink="/dashboard/roadmap" (click)="mobileMenuOpen = false" class="px-4 py-2 text-gray-900 dark:text-gray-100 glass dark:glass-dark hover:scale-105 rounded-xl transition-all">
                   Roadmap
                 </a>
-                <a routerLink="/dashboard/role-comparison" (click)="mobileMenuOpen = false" class="px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+                <a routerLink="/dashboard/role-comparison" (click)="mobileMenuOpen = false" class="px-4 py-2 text-gray-900 dark:text-gray-100 glass dark:glass-dark hover:scale-105 rounded-xl transition-all">
                   Compare Roles
                 </a>
-                <a routerLink="/dashboard/profile" (click)="mobileMenuOpen = false" class="px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+                <a routerLink="/dashboard/profile" (click)="mobileMenuOpen = false" class="px-4 py-2 text-gray-900 dark:text-gray-100 glass dark:glass-dark hover:scale-105 rounded-xl transition-all">
                   Profile
                 </a>
                 <button
                   (click)="logout()"
-                  class="text-left px-4 py-2 text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                  class="text-left px-4 py-2 text-red-600 dark:text-red-400 glass dark:glass-dark hover:scale-105 rounded-xl transition-all"
                 >
                   Sign Out
                 </button>

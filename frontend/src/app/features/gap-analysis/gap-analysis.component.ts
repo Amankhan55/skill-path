@@ -32,7 +32,7 @@ import { AuthService } from '../../core/services/auth.service';
 
       <!-- No Target Role -->
       @if (!loading() && !authService.currentUser()?.targetRole) {
-        <div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-xl p-6 text-center">
+        <div class="glass-card dark:glass-card-dark border-white/30 rounded-xl p-6 text-center backdrop-blur-xl">
           <h3 class="text-lg font-bold text-yellow-900 dark:text-yellow-100 mb-2">
             No Target Role Selected
           </h3>
@@ -51,7 +51,7 @@ import { AuthService } from '../../core/services/auth.service';
       @if (!loading() && authService.currentUser()?.targetRole) {
         <!-- Readiness Score Card -->
         @if (readinessScore()) {
-          <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-8 text-white mb-8">
+          <div class="glass-card dark:glass-card-dark rounded-xl p-8 text-white mb-8 backdrop-blur-xl border-white/30">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between">
               <div>
                 <h2 class="text-2xl font-bold mb-2">
@@ -79,9 +79,9 @@ import { AuthService } from '../../core/services/auth.service';
             (click)="filterType.set('all')"
             [class.bg-blue-600]="filterType() === 'all'"
             [class.text-white]="filterType() === 'all'"
-            [class.bg-gray-200]="filterType() !== 'all'"
-            [class.dark:bg-gray-700]="filterType() !== 'all'"
-            class="px-4 py-2 rounded-lg font-medium transition-colors"
+            [class.glass-card]="filterType() !== 'all'"
+            [class.dark:glass-card-dark]="filterType() !== 'all'"
+            class="px-4 py-2 rounded-xl font-medium transition-all backdrop-blur-xl"
           >
             All ({{ gaps().length }})
           </button>
@@ -111,7 +111,7 @@ import { AuthService } from '../../core/services/auth.service';
         @if (getFilteredGaps().length > 0) {
           <div class="space-y-4">
             @for (gap of getFilteredGaps(); track gap.skillId) {
-              <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md">
+              <div class="glass-card dark:glass-card-dark rounded-xl p-6 backdrop-blur-xl">
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                   <!-- Skill Info -->
                   <div class="flex-1">
@@ -190,13 +190,13 @@ import { AuthService } from '../../core/services/auth.service';
         <div class="mt-8 flex justify-between">
           <a
             routerLink="/dashboard/skills"
-            class="px-6 py-3 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 font-medium rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            class="px-6 py-3 glass dark:glass-dark text-gray-900 dark:text-gray-100 font-medium rounded-xl hover:scale-105 transition-all backdrop-blur-xl"
           >
             ← Update Skills
           </a>
           <a
             routerLink="/dashboard/roadmap"
-            class="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all shadow-md hover:shadow-lg"
+            class="px-6 py-3 glass-card dark:glass-card-dark text-white font-medium rounded-xl hover:scale-105 transition-all backdrop-blur-xl border-white/30"
           >
             View Roadmap →
           </a>
